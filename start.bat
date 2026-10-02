@@ -37,7 +37,7 @@ set "VENV_PY=.venv\Scripts\python.exe"
 
 REM 2) Create a private Python environment the first time.
 if not exist "%VENV_PY%" (
-    echo Setting up for the first time (this can take a minute)...
+    echo Setting up for the first time - this can take a minute...
     %PYLAUNCH% -m venv .venv
     if errorlevel 1 (
         echo Could not create the Python environment.
@@ -48,15 +48,15 @@ if not exist "%VENV_PY%" (
 
 REM 3) Install the required packages and browser drivers.
 if not exist ".venv\.deps_installed" (
-    echo Installing required packages (one time only)...
+    echo Installing required packages - one time only...
     "%VENV_PY%" -m pip install --quiet --upgrade pip
     "%VENV_PY%" -m pip install -r requirements.txt
-    "%VENV_PY%" -m playwright install chromium
     if errorlevel 1 (
         echo Could not install required packages.
         pause
         exit /b 1
     )
+    "%VENV_PY%" -m playwright install chromium || ver >nul
     echo done> ".venv\.deps_installed"
 )
 

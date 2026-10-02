@@ -23,7 +23,7 @@ if not defined PYLAUNCH (
 
 set "VENV_PY=.venv\Scripts\python.exe"
 if not exist "%VENV_PY%" (
-    echo Setting up the environment (first run)...
+    echo Setting up the environment - first run...
     %PYLAUNCH% -m venv .venv
 )
 
